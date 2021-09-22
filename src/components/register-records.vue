@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import registerCard from "./register-card.vue";
+import RegisterCard from "./register-card.vue";
 export default {
   name: "register-records",
   components: {
