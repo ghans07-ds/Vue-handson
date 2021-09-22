@@ -5,16 +5,16 @@
       <button
         class="show-form"
         type="submit"
-        @click="showForm"
-        :class="{ isActive: isActive }"
+        v-on:click="showForm"
+        v-bind:class="{ isActive: isActive }"
       >
         Form
       </button>
       <button
         class="show-records"
         type="submit"
-        @click="showRecords"
-        :class="{ isActive: !isActive }"
+        v-on:click="showRecords"
+        v-bind:class="{ isActive: !isActive }"
       >
         Records
       </button>
@@ -22,10 +22,10 @@
     <div class="main-content">
       <keep-alive>
         <component
-          :is="component"
-          :studentData="studentData"
-          :isFormSelected="isFormSelect"
-          @studentData="getstudentData($event)"
+          v-bind:is="component"
+          v-bind:studentData="studentData"
+          v-bind:isFormSelected="isFormSelect"
+          v-on:studentData="getstudentData($event)"
         ></component>
       </keep-alive>
     </div>

@@ -3,25 +3,32 @@
     <div class="form-container">
       <p
         v-if="!isSuccess && isActive"
-        :style="{ backgroundColor: 'rgb(236, 60, 60)' }"
+        v-bind:style="{ backgroundColor: 'rgb(236, 60, 60)' }"
       >
         Fields should not be empty!
       </p>
-      <p v-if="isSuccess && isActive" :style="{ backgroundColor: 'green' }">
+      <p
+        v-if="isSuccess && isActive"
+        v-bind:style="{ backgroundColor: 'green' }"
+      >
         Succesfully Registerd!!
       </p>
-      <form @submit="registerStudent">
+      <form v-on:submit="registerStudent">
         <div class="input-fields">
           <div class="input-field">
             <input
               type="text"
-              v-model="name"
-              placeholder="Enter Name"
+              v-model="firstName"
+              placeholder="Enter First Name"
               autofocus
             />
           </div>
           <div class="input-field">
-            <input type="text" v-model="surname" placeholder="Enter Surname" />
+            <input
+              type="text"
+              v-model="lastName"
+              placeholder="Enter Last Name"
+            />
           </div>
           <div class="input-field">
             <input type="email" v-model="email" placeholder="Enter Email" />
@@ -46,10 +53,10 @@ export default {
   name: "register-form",
   data() {
     return {
-      name: "",
+      firstName: "",
       email: "",
       mobileNo: "",
-      surname: "",
+      lastName: "",
       studentData: [],
       isSuccess: true,
       isActive: false,
@@ -63,13 +70,13 @@ export default {
       e.preventDefault();
       this.isActive = true;
       this.isSuccess = true;
-      if (!this.name || !this.email || !this.mobileNo || !this.surname) {
+      if (!this.firstName || !this.email || !this.mobileNo || !this.lastName) {
         this.isSuccess = false;
       }
       this.isSuccess &&
         this.studentData.push({
-          name: this.name,
-          surname: this.surname,
+          firstName: this.firstName,
+          lastName: this.lastName,
           fullName: this.fullName,
           email: this.email,
           mobileNo: this.mobileNo,
@@ -79,13 +86,13 @@ export default {
   },
   computed: {
     fullName() {
-      return `${this.surname} ${this.name}`;
+      return `${this.lastName} ${this.firstName}`.toUpperCase();
     },
   },
   watch: {
     isFormSelected() {
       this.isActive = false;
-      this.name = this.email = this.mobileNo = this.surname = "";
+      this.firstName = this.email = this.mobileNo = this.lastName = "";
     },
   },
   mounted() {
